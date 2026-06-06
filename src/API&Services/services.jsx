@@ -35,6 +35,7 @@ const apiCall = async (endpoint) => {
   }
 };
 
+
 const serviceCall = (srv)=>{
     if(srv==="navbar"){
         return [
@@ -518,23 +519,70 @@ const serviceCall = (srv)=>{
       ]
     }
     if(srv==="skill"){
+      return [
+          {
+            title: "UI & UX",
+            items: [
+              { name: "Figma", icon: "figma.svg" },
+              { name: "Adobe XD", icon: "xd.svg" },
+              { name: "WordPress", icon: "wordpress.svg" },
+            ],
+          },
+          {
+            title: "Graphic Design",
+            items: [
+              { name: "Illustrator", icon: "illustrator.svg" },
+              { name: "Photoshop", icon: "photoshop.svg" },
+            ],
+          },
+          {
+            title: "Web Design",
+            items: [
+              { name: "HTML", icon: "html.svg" },
+              { name: "CSS", icon: "css.svg" },
+              { name: "JavaScript", icon: "js.svg" },
+              { name: "Bootstrap", icon: "bootstrap.svg" },
+            ],
+          },
+      ]
+    }
+    if(srv=== "footer"){
       return {
-           title: "Skills",
-           skillData: [
-            {
-              title: "UI & UX",
-              icons: ["/icons/figma.svg", "/icons/xd.svg", "/icons/wordpress.svg"],
-            },
-            {
-              title: "Graphic Design",
-              icons: ["/icons/ai.svg", "/icons/ps.svg"],
-            },
-            {
-              title: "Web Design",
-              icons: ["/icons/html.svg", "/icons/css.svg", "/icons/js.svg", "/icons/bootstrap.svg"],
-            },
-          ],
-        };
+        social:[
+        {
+          icon: "/icon/icon-1.png",
+          label: "E-mail",
+          value: "ferthoz2001@gmail.com",
+          href: "mailto:ferthoz2001@gmail.com",
+        },
+        {
+          icon: "/icon/icon-2.png",
+          label: "Call",
+          value: "9150369790",
+          href: "tel:9150369790",
+        },
+        {
+          icon: "/icon/icon-3.png",
+          label: "Linkedin",
+          value: "Linkedin.com/in/ferthoz-begam0605/",
+          href: "https://linkedin.com/in/ferthoz-begam0605/",
+        },
+        {
+          icon: "/icon/icon-3.png",
+          label: "Behance",
+          value: "https://www.behance.net/014ferthozbegam",
+          href: "https://www.behance.net/014ferthozbegam",
+        },
+      ],
+      logo:"logo.webp",
+      nav:["Home", "About", "Skills", "Projects"],
+      icon:[
+        {icon:"/social-icon/linkedin.png", href:"#"},
+        {icon:"/social-icon/youtube.png", href:"#"},
+        {icon:"/social-icon/email.png", href:"#"},
+        {icon:"/social-icon/internet.png", href:"#"},
+      ]
+      }
     }
     if(srv==="badge"){
       return [
@@ -567,16 +615,13 @@ const serviceCall = (srv)=>{
     }
 
     return []
-  
 }
 
  function services(conditions) {
     if (!conditions) {
-        // Perform some logic based on conditions
         return [];
-    }  
-        apiCall(conditions);
-        return  serviceCall(conditions) || [];
+    }
+    return apiCall(conditions) || [];
 }
 
 export default services
