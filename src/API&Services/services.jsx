@@ -617,11 +617,17 @@ const serviceCall = (srv)=>{
     return []
 }
 
- function services(conditions) {
+  function services(conditions) {
     if (!conditions) {
         return [];
     }
-    return apiCall(conditions) || [];
+    return  serviceCall(conditions) || [];
+}
+export  async function servicesApi(conditions) {
+    if (!conditions) {
+        return [];
+    }
+    return await apiCall(conditions) || [];
 }
 
-export default services
+export default services;

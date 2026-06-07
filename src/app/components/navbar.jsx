@@ -1,5 +1,6 @@
 "use client";
 import services from "../../API&Services/services";
+import {servicesApi} from "../../API&Services/services";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GradientButton from "./ui/gradientButton";
@@ -11,8 +12,18 @@ import Image from "next/image";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const navManu = services("navbar");
-  console.log("navManu", navManu);
+  const [navManu2, setNavManu2] = useState([]);
+  const navManu =  services("navbar");
+
+  async function fetchNavManuData() {
+    const data = await servicesApi("navbar");
+    setNavManu2(data);
+    console.log("Fetched navbar data:", data);
+  }
+
+  useEffect(() => {
+    fetchNavManuData();
+  }, []);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 10);
@@ -127,7 +138,7 @@ export default function Navbar() {
                   visible: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
                 }}
               >
-                {navManu.map((link) => (
+                {navManu?.map((link) => (
                   <motion.li
                     key={link.label}
                     variants={{
